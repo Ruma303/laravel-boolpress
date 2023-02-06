@@ -1,0 +1,42 @@
+.col-title {
+    text-transform: uppercase;
+}
+.img-preview {
+    max-width: 80px;
+    aspect-ratio: 3/2;
+}
+.category-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    gap : 1rem;
+}
+.index-title {
+    font-weight: 700;
+    font-size: 3rem;
+    padding: 1rem 2rem;
+}
+.li-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 1rem;
+}
+.front-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 25rem;
+    max-width: 20rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    text-align: center;
+}
+.img-app{
+    max-width: 5rem;
+}
