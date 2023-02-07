@@ -5062,8 +5062,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -5073,15 +5071,6 @@ __webpack_require__.r(__webpack_exports__);
     NavBar: _components_NavBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
-  /* data(){
-      return{
-          arrPosts : [],
-      };
-  },
-  created(){
-      axios.get('/api/posts')
-      .then(response => this.arrPosts = response.data.results)
-  } */
 });
 
 /***/ }),
@@ -5214,9 +5203,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'PageHome'
+  name: 'PageHome',
+  data: function data() {
+    return {
+      arrRandom: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+    axios.get('api/posts/random').then(function (response) {
+      return _this.arrRandom = response.data.results;
+    });
+  }
 });
 
 /***/ }),
@@ -5242,9 +5252,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  // props: ['slug', 'author'],
+  name: 'PagePost',
+  props: ['slug'],
+  data: function data() {
+    return {
+      objPost: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+    axios.get('/api/posts' + this.slug).then(function (response) {
+      return _this.objPost = response.data.results;
+    });
+  }
 });
 
 /***/ }),
@@ -5260,8 +5288,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -5353,7 +5379,8 @@ var routes = [{
 }, {
   path: '/posts',
   component: _pages_PagePosts_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-  name: 'postsIndex'
+  name: 'postsIndex',
+  props: true
 }, {
   path: '/posts/:slug',
   component: _pages_PagePost_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -11697,7 +11724,27 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Home")])
+  return _c(
+    "div",
+    { staticClass: "grid" },
+    _vm._l(_vm.arrRandom, function (post) {
+      return _c(
+        "div",
+        { key: post.id },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: { to: { name: "postsShow", params: { slug: post.slug } } },
+            },
+            [_c("img", { attrs: { src: _vm.posts.image, alt: post.title } })]
+          ),
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11722,13 +11769,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Post")]),
-    _vm._v(" "),
-    _c("p", [_vm._v("Slug: " + _vm._s(_vm.$route.params.slug))]),
-    _vm._v(" "),
-    _c("p", [_vm._v("Slug: " + _vm._s(_vm.$route.params.description))]),
-  ])
+  return _vm.objPost
+    ? _c("div", [
+        _c("h1", [_vm._v(_vm._s(_vm.objPost.title))]),
+        _vm._v(" "),
+        _c("h2", [
+          _vm._v("Nella categoria: " + _vm._s(_vm.objPost.category.name)),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tags" },
+          _vm._l(_vm.objPost.tags, function (tag) {
+            return _c("span", { key: tag.id, staticClass: "tag" }, [
+              _vm._v(_vm._s(tag.name)),
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("img", {
+          attrs: { src: _vm.objPost.image, alt: _vm.objPost.title },
+        }),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n        " + _vm._s(_vm.objPost.content) + "\n    "),
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Description: " + _vm._s(_vm.objPost.description))]),
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

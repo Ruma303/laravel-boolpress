@@ -1,16 +1,34 @@
 <template>
-    <div>
-        <h1>Post</h1>
-        <!-- <img :src="'storage/' + post.uploaded_img"
-        :alt="post.title"> -->
-        <p>Slug: {{ $route.params.slug }}</p>
-        <p>Slug: {{ $route.params.description }}</p>
+    <div v-if="objPost">
+    <h1>{{ objPost.title }}</h1>
+        <h2>Nella categoria: {{ objPost.category.name }}</h2>
+        <div class="tags">
+            <span v-for="tag in objPost.tags" :key="tag.id" class="tag">{{ tag.name }}</span>
+        </div>
+        <img :src="objPost.image" :alt="objPost.title">
+        <!-- <img :src="'/storage/' + objPost.uploaded_img" :alt="objPost.title"> -->
+        <p>
+            {{ objPost.content }}
+        </p>
+        <p>Description: {{ objPost.description }}</p>
     </div>
 </template>
 
 <script>
 export default {
-    // props: ['slug', 'author'],
+    name: 'PagePost',
+    props: [
+        'slug',
+    ],
+    data(){
+        return{
+            objPost : null,
+        };
+    },
+    created(){
+        axios.get('/api/posts' + this.slug)
+        .then(response => this.objPost = response.data.results)
+    }
 }
 </script>
 

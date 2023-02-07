@@ -107,12 +107,7 @@ class CategoryController extends Controller
             'category' => $category]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Category $category)
     {
         $defaultCategory = Category::where('slug','uncategorized')->first();
@@ -123,5 +118,16 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()
         ->route('admin.categories.index')->with('deleted', $category);
+    }
+
+    public function slug(Request $request)
+    {
+
+        $title = $request->query('title');
+        // risponde con il primo slug disponibile restituito JSON per essere usato da JS
+        $slug = Category::getSlug($title);
+        return response()->json([
+            'slug' => $slug,
+        ]);
     }
 }

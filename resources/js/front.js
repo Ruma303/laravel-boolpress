@@ -12,9 +12,9 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/', component: PageHome, name: 'home' },
     { path: '/about', component: PageAbout, name: 'about' },
-    { path: '/posts', component: PagePosts, name: 'postsIndex' },
-    { path: '/posts/:slug', component: PagePost, name: 'postsShow', props: true},
-    { path: '*', name: 'page404', component: Page404}
+    { path: '/posts', component: PagePosts, name: 'postsIndex', props:true },
+    { path: '/posts/:slug', component: PagePost, name: 'postsShow', props:true },
+    { path: '*', name: 'page404', component: Page404 },
 ];
 
 // Personalizzazione del Vue Router

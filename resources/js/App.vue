@@ -2,12 +2,10 @@
     <div>
         <!-- Navbar -->
         <NavBar></NavBar>
-        <!-- <h1>Front office with Vue</h1> -->
         <!-- Main -->
         <main>
             <router-view></router-view>
         </main>
-
         <!-- Footer -->
         <Footer />
     </div>
@@ -21,16 +19,7 @@ export default {
     components: {
         NavBar,
         Footer
-    },
-    /* data(){
-        return{
-            arrPosts : [],
-        };
-    },
-    created(){
-        axios.get('/api/posts')
-        .then(response => this.arrPosts = response.data.results)
-    } */
+    }
 }
 </script>
 

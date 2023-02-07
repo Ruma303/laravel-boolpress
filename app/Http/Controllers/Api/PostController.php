@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        $posts = Post::paginate();
         $posts = Post::all();
         return response()->json([
            'success' => true,
@@ -22,17 +18,20 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function show(Post $post)
     {
+        $post = Post::where('id', $post->id)->with(['category', 'tags'])->first();
         return response()->json([
             'success' => true,
-            'results' => $post
-         ]);
-     }
+            'results' => $post,
+        ]);
+    }
+
+    public function random() {
+        $posts = Post::inRandomOrder()->limit(9)->get();
+        return response()->json([
+            'success' => true,
+            'results' => $posts,
+        ]);
+    }
 }

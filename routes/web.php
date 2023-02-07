@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('guest.home');
 })->name('home');
-
+ */
 Auth::routes();
 
 Route::middleware('auth')
@@ -25,9 +25,9 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', 'PageController@dashboard')
-        ->name('dashboard');
+        Route::get('/', 'PageController@dashboard')->name('dashboard');
         Route::get('/posts/slug', 'PostController@slug')->name('posts.slug');
+        Route::get('/categories/slug', 'CategoryController@slug')->name('categories.slug');
         Route::resource('posts', 'PostController');
         Route::resource('categories', 'CategoryController');
         Route::resource('tags', 'TagController');
