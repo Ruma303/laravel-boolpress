@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+body {
+  background-color: rgb(134, 134, 134);
+}
+
 .col-title {
   text-transform: uppercase;
 }
@@ -25,28 +29,52 @@
   padding: 1rem 2rem;
 }
 
-.li-card {
+.cards-div {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 3rem;
   margin: 0 auto;
   gap: 1rem;
 }
-
-.front-card {
+.cards-div .li-card {
+  height: 25rem;
+  width: 20rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-height: 25rem;
-  max-width: 20rem;
+  justify-content: flex-start;
+  height: 25rem;
+  width: 20rem;
   margin: 0 auto;
   padding: 1rem 2rem;
   gap: 1rem;
   text-align: center;
+  border: solid 1px lightgray;
+  border-radius: 15px;
 }
-
-.img-app {
-  max-width: 5rem;
+.cards-div .li-card img {
+  max-height: 10rem;
+}
+.cards-div .li-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 10rem;
+  width: 15rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+.cards-div .li-card .card-body h5, .cards-div .li-card .card-body .h5 {
+  text-transform: uppercase;
+}
+.cards-div .li-card .card-body p {
+  font-size: 0.7rem;
 }
 
 .post-container {

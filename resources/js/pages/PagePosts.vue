@@ -12,8 +12,11 @@
                         class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">{{post.except}}</p>
-                        <a :href="'/posts/'+ post.slug" class="btn btn-primary">Read</a>
+                        <!-- <p class="card-text">{{post.except}}</p> -->
+                        <router-link
+                        :to="{name: 'postsShow', params:{slug: post.slug}}"
+                        class="btn btn-primary"
+                        >Read</router-link>
                     </div>
                 </li>
             </ul>

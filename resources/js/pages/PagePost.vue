@@ -1,8 +1,10 @@
 <template>
     <div>
         <h1>Post</h1>
-        <!-- <h3>Author: {{ $route.params.author }}</h3> -->
+        <!-- <img :src="'storage/' + post.uploaded_img"
+        :alt="post.title"> -->
         <p>Slug: {{ $route.params.slug }}</p>
+        <p>Slug: {{ $route.params.description }}</p>
     </div>
 </template>
 

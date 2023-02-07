@@ -33,6 +33,8 @@ Route::middleware('auth')
         Route::resource('tags', 'TagController');
 });
 
+// Route::get('/categories/{category}', 'CategoryController@slug')->name('categories.slug');
+
 Route::get('{any?}', function () {
-    return view('guest.view');
+    return view('guest.home');
 })->where('any', '.*')->name('guest.home');

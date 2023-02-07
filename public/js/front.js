@@ -5064,24 +5064,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -5090,18 +5072,16 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     NavBar: _components_NavBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {
-      arrPosts: []
-    };
-  },
-  created: function created() {
-    var _this = this;
-    axios.get('/api/posts').then(function (response) {
-      return _this.arrPosts = response.data.results;
-    });
   }
+  /* data(){
+      return{
+          arrPosts : [],
+      };
+  },
+  created(){
+      axios.get('/api/posts')
+      .then(response => this.arrPosts = response.data.results)
+  } */
 });
 
 /***/ }),
@@ -5260,6 +5240,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // props: ['slug', 'author'],
@@ -5282,8 +5264,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'PagePosts',
+  data: function data() {
+    return {
+      arrPosts: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+    axios.get('/api/posts').then(function (response) {
+      return _this.arrPosts = response.data.results;
+    });
+  }
+});
 
 /***/ }),
 
@@ -5324,8 +5341,7 @@ __webpack_require__(/*! ./common */ "./resources/js/common.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_6__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]); // Usare il plugin
-
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var routes = [{
   path: '/',
   component: _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -5351,6 +5367,7 @@ var routes = [{
 
 // Personalizzazione del Vue Router
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]({
+  mode: 'history',
   routes: routes
 });
 new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
@@ -5358,7 +5375,6 @@ new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   },
-  mode: history,
   router: router
 });
 
@@ -11398,46 +11414,7 @@ var render = function () {
     [
       _c("NavBar"),
       _vm._v(" "),
-      _c("h1", [_vm._v("Front office with Vue")]),
-      _vm._v(" "),
       _c("main", [_c("router-view")], 1),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "ul",
-          { staticClass: "cards-div" },
-          _vm._l(_vm.arrPosts, function (post) {
-            return _c("li", { key: post.id, staticClass: "li-card" }, [
-              _c("div", { staticClass: "card front-card" }, [
-                _c("img", {
-                  staticClass: "card-img-top img-app",
-                  attrs: { src: post.image, alt: post.title },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.except)),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { href: "/posts/" + post.slug },
-                    },
-                    [_vm._v("Read")]
-                  ),
-                ]),
-              ]),
-            ])
-          }),
-          0
-        ),
-      ]),
       _vm._v(" "),
       _c("Footer"),
     ],
@@ -11749,6 +11726,8 @@ var render = function () {
     _c("h1", [_vm._v("Post")]),
     _vm._v(" "),
     _c("p", [_vm._v("Slug: " + _vm._s(_vm.$route.params.slug))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("Slug: " + _vm._s(_vm.$route.params.description))]),
   ])
 }
 var staticRenderFns = []
@@ -11774,7 +11753,47 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Index dei posts")])
+  return _c("div", [
+    _c("h1", [_vm._v("Index dei posts")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "ul",
+        { staticClass: "cards-div" },
+        _vm._l(_vm.arrPosts, function (post) {
+          return _c("li", { key: post.id, staticClass: "li-card" }, [
+            _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: post.image, alt: post.title },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title)),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: {
+                      to: { name: "postsShow", params: { slug: post.slug } },
+                    },
+                  },
+                  [_vm._v("Read")]
+                ),
+              ],
+              1
+            ),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

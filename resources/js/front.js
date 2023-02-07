@@ -7,7 +7,7 @@ import PageAbout from './pages/PageAbout.vue';
 import PagePost from './pages/PagePost.vue';
 import PagePosts from './pages/PagePosts.vue';
 import Page404 from './pages/Page404.vue'
-Vue.use(VueRouter); // Usare il plugin
+Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: PageHome, name: 'home' },
@@ -18,11 +18,13 @@ const routes = [
 ];
 
 // Personalizzazione del Vue Router
-const router = new VueRouter({routes});
+const router = new VueRouter({
+    mode: 'history',
+    routes,
+});
 
 new Vue({
     el: '#root',
     render: h => h(App),
-    mode: history,
     router
 })
