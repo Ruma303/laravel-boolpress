@@ -26,7 +26,7 @@ export default {
         };
     },
     created(){
-        axios.get('/api/posts' + this.slug)
+        axios.get('/api/posts/' + this.slug)
         .then(response => this.objPost = response.data.results)
     }
 }

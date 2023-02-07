@@ -5269,7 +5269,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
-    axios.get('/api/posts' + this.slug).then(function (response) {
+    axios.get('/api/posts/' + this.slug).then(function (response) {
       return _this.objPost = response.data.results;
     });
   }
