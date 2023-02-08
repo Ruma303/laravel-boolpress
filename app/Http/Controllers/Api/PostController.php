@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(12);
+        $posts = Post::paginate  (12);
         // $posts = Post::all();
         return response()->json([
            'success' => true,
@@ -18,9 +18,9 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show($post)
     {
-        $post = Post::where('id', $post->id)->with(['category', 'tags'])->first();
+        $post = Post::where('slug', $post)->with(['category', 'tags'])->first();
         if ($post){ // se il post esiste
             return response()->json([
                 'success' => true,
