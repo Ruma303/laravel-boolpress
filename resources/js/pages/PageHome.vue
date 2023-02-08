@@ -22,24 +22,29 @@ export default {
     },
     created(){
         axios.get('api/posts/random')
-        .then(response => this.arrRandom = response.data.results );
+        .then(response => this.arrRandom = response.data.results);
     }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .grid {
     display: flex;
     flex-wrap: wrap;
-    height: 70vh;
+    // align-items: center;
+    justify-content: center;
+// height: 100%;
+// width: 100%;
+    margin: 0 auto;
+    // height: 70vh;
+}
 .tile {
     flex: 0 0 calc(100% / 3);
     height: calc(100% / 3);
-    img {
+}
+.tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    }
-    }
 }
 </style>

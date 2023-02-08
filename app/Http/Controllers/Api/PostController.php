@@ -21,10 +21,16 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post = Post::where('id', $post->id)->with(['category', 'tags'])->first();
-        return response()->json([
-            'success' => true,
-            'results' => $post,
-        ]);
+        if ($post){ // se il post esiste
+            return response()->json([
+                'success' => true,
+                'results' => $post,
+            ]);
+        } else { // se non esiste
+            return response()->json([
+                'success' => false,
+            ]);
+        }
     }
 
     public function random() {
