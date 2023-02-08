@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate();
-        $posts = Post::all();
+        $posts = Post::paginate(12);
+        // $posts = Post::all();
         return response()->json([
            'success' => true,
            'results' => $posts

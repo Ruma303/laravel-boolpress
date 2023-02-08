@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
     return view('guest.home');
 })->name('home');
  */
+
 Auth::routes();
 
 Route::middleware('auth')

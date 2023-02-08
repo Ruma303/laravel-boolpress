@@ -7,6 +7,7 @@ import PageAbout from './pages/PageAbout.vue';
 import PagePost from './pages/PagePost.vue';
 import PagePosts from './pages/PagePosts.vue';
 import Page404 from './pages/Page404.vue'
+import PageContactUs from './pages/PageContactUs.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,6 +15,7 @@ const routes = [
     { path: '/about', component: PageAbout, name: 'about' },
     { path: '/posts', component: PagePosts, name: 'postsIndex', props:true },
     { path: '/posts/:slug', component: PagePost, name: 'postsShow', props:true },
+    { path: '/contact-us', name: 'contactUs', component: PageContactUs },
     { path: '*', name: 'page404', component: Page404 },
 ];
 

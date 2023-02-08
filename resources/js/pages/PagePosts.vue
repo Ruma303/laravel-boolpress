@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <!-- <Page404 v-if="isLoading"></Page404> -->
+    <div v-if="results">
         <h1>Index dei posts</h1>
         <div class="row">
             <ul class="cards-div">
-                <li v-for="post in arrPosts"
+                <li v-for="post in results.data"
                 :key="post.id"
                 class="li-card"
                 >
@@ -19,6 +20,32 @@
                 </li>
             </ul>
         </div>
+        <nav class="mt-4">
+            <ul class="pagination">
+                <li
+                class="page-item"
+                :class="{disabled : results.current_page === 1}"
+                @click="changePage(results.current_page -1)">
+
+                    <span class="page-link">Previous</span></li>
+
+                <!-- *Tutte le pagine in ordine crescente-->
+                <li v-for="page in results.last_page"
+                :key="page"
+                class="page-item"
+                :class="{active : results.current_page === page}"
+                @click="changePage(page)">
+
+                    <span class="page-link">{{ page }}</span></li>
+
+                <li
+                class="page-item"
+                :class="{disabled : results.current_page === results.last_page}"
+                @click="changePage(results.current_page +1)">
+
+                    <span class="page-link">Next</span></li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -27,16 +54,24 @@ export default {
     name: 'PagePosts',
     data(){
         return{
-            arrPosts : [],
+            // isLoading:true,
+            // this.isLoading = false;
+            results : null,
         };
+    }, methods: {
+        changePage(page) {
+            axios.get('/api/posts?page=' + page)
+                .then(response => {
+                    this.results = response.data.results;
+                })
+        }
     },
     created(){
-        axios.get('/api/posts')
-        .then(response => this.arrPosts = response.data.results)
+        this.changePage(1);
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
