@@ -5253,6 +5253,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'PageContactUs',
@@ -5261,19 +5289,32 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       email: '',
       newsletter: true,
-      message: ''
+      message: '',
+      errors: null
     };
   },
   methods: {
     submitData: function submitData() {
+      var _this = this;
+      this.errors = null;
       axios.post('/api/leads', {
         name: this.name,
         email: this.email,
         newsletter: this.newsletter,
         message: this.message
       }).then(function (response) {
-        return response.data;
-      }); // TODO completare
+        if (response.data.success) {
+          _this.resetForm();
+        } else {
+          _this.errors = response.data.errors;
+        }
+      });
+    },
+    resetForm: function resetForm() {
+      this.name = '';
+      this.email = '';
+      this.newsletter = true;
+      this.message = '';
     }
   }
 });
@@ -12518,6 +12559,7 @@ var render = function () {
     _c(
       "form",
       {
+        staticClass: "row g-3 mx-2 needs-validation",
         attrs: { method: "post", action: "/api/leads", novalidate: "" },
         on: {
           submit: function ($event) {
@@ -12527,11 +12569,95 @@ var render = function () {
         },
       },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "mb-2 col-8" }, [
+          _c("label", { staticClass: "form-text", attrs: { id: "name" } }, [
+            _vm._v("Your Full Name"),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name",
+              },
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors && _vm.error.name },
+            attrs: { type: "text", id: "name", name: "name", value: "" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm.error && _vm.error.name
+              ? _c(
+                  "ul",
+                  [
+                    _vm._l(_vm.errors.name, function (error) {
+                      return _c("li", { key: error })
+                    }),
+                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                  ],
+                  2
+                )
+              : _vm._e(),
+          ]),
+        ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "mb-2 col-8" }, [
+          _c("label", { staticClass: "form-text", attrs: { id: "email" } }, [
+            _vm._v("Your email"),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email",
+              },
+            ],
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors && _vm.error.email },
+            attrs: { type: "email", id: "email", name: "email", value: "" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm.error && _vm.error.name
+              ? _c(
+                  "ul",
+                  [
+                    _vm._l(_vm.errors.name, function (error) {
+                      return _c("li", { key: error })
+                    }),
+                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                  ],
+                  2
+                )
+              : _vm._e(),
+          ]),
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "mb-3" }, [
+        _c("div", { staticClass: "mb-2 col-8" }, [
           _c("label", { staticClass: "form-text", attrs: { id: "message" } }, [
             _vm._v("Your message"),
           ]),
@@ -12545,7 +12671,8 @@ var render = function () {
                 expression: "message",
               },
             ],
-            staticClass: "form-control is-invalid",
+            staticClass: "form-control",
+            class: { "is-invalid": _vm.errors && _vm.error.message },
             attrs: {
               id: "message",
               name: "message",
@@ -12567,14 +12694,27 @@ var render = function () {
             },
           }),
           _vm._v(" "),
-          _vm._m(2),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm.error && _vm.error.name
+              ? _c(
+                  "ul",
+                  [
+                    _vm._l(_vm.errors.name, function (error) {
+                      return _c("li", { key: error })
+                    }),
+                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                  ],
+                  2
+                )
+              : _vm._e(),
+          ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "mb-3" }, [
+        _c("div", { staticClass: "mb-2 col-12" }, [
           _c("div", { staticClass: "form-check", attrs: { id: "checkbox" } }, [
             _c(
               "label",
-              { staticClass: "form-check-label", attrs: { id: "checkbox" } },
+              { staticClass: "form-check-label", attrs: { id: "newsletter" } },
               [_vm._v("Sign me up for the Newsletter")]
             ),
             _vm._v(" "),
@@ -12587,16 +12727,11 @@ var render = function () {
                   expression: "newsletter",
                 },
               ],
-              staticClass: "form-check-input is-invalid",
-              attrs: {
-                type: "checkbox",
-                id: "checkbox",
-                name: "checkbox",
-                value: "",
-              },
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "newsletter", name: "newsletter" },
               domProps: {
                 checked: Array.isArray(_vm.newsletter)
-                  ? _vm._i(_vm.newsletter, "") > -1
+                  ? _vm._i(_vm.newsletter, null) > -1
                   : _vm.newsletter,
               },
               on: {
@@ -12605,7 +12740,7 @@ var render = function () {
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
-                    var $$v = "",
+                    var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
                       $$i < 0 && (_vm.newsletter = $$a.concat([$$v]))
@@ -12622,71 +12757,36 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _vm._m(3),
+            _c("div", { staticClass: "invalid-feedback" }, [
+              _vm.error && _vm.error.name
+                ? _c(
+                    "ul",
+                    [
+                      _vm._l(_vm.errors.name, function (error) {
+                        return _c("li", { key: error })
+                      }),
+                      _vm._v(_vm._s(_vm.errore) + "\n                    "),
+                    ],
+                    2
+                  )
+                : _vm._e(),
+            ]),
           ]),
         ]),
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-primary col-2 mb-3",
+            attrs: { type: "submit" },
+          },
           [_vm._v("Submit")]
         ),
       ]
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "form-text", attrs: { id: "name" } }, [
-        _vm._v("Your Full Name"),
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control is-invalid",
-        attrs: { type: "text", id: "name", name: "name", value: "" },
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [_c("ul", [_c("li")])]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("label", { staticClass: "form-text", attrs: { id: "email" } }, [
-        _vm._v("Your email"),
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control is-invalid",
-        attrs: { type: "email", id: "email", name: "email", value: "" },
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [_c("ul", [_c("li")])]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "invalid-feedback" }, [
-      _c("ul", [_c("li")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "invalid-feedback" }, [
-      _c("ul", [_c("li")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
