@@ -1,5 +1,4 @@
 <template>
-    <!-- <Page404 v-if="isLoading"></Page404> -->
     <div v-if="results">
         <h1>Index dei posts</h1>
         <div class="row">
@@ -23,7 +22,7 @@
         <nav class="mt-4">
             <ul class="pagination">
                 <li
-                class="page-item"
+                class="page-item pag-button"
                 :class="{disabled : results.current_page === 1}"
                 @click="changePage(results.current_page -1)">
 
@@ -32,14 +31,14 @@
                 <!-- *Tutte le pagine in ordine crescente-->
                 <li v-for="page in results.last_page"
                 :key="page"
-                class="page-item"
+                class="page-item pag-button"
                 :class="{active : results.current_page === page}"
                 @click="changePage(page)">
 
                     <span class="page-link">{{ page }}</span></li>
 
                 <li
-                class="page-item"
+                class="page-item pag-button"
                 :class="{disabled : results.current_page === results.last_page}"
                 @click="changePage(results.current_page +1)">
 
@@ -54,8 +53,6 @@ export default {
     name: 'PagePosts',
     data(){
         return{
-            // isLoading:true,
-            // this.isLoading = false;
             results : null,
         };
     }, methods: {
@@ -63,7 +60,9 @@ export default {
             axios.get('/api/posts?page=' + page)
                 .then(response => {
                     this.results = response.data.results;
-                })
+                    scrollTo(0,0);
+                }
+            )
         }
     },
     created(){
@@ -73,5 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.pag-button{
+    cursor: pointer;
+}
 </style>
