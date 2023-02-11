@@ -5345,8 +5345,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'PageHome',
@@ -5377,7 +5375,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Page404_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Page404.vue */ "./resources/js/pages/Page404.vue");
-//
 //
 //
 //
@@ -10834,7 +10831,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-13e03f97] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  margin: 0 auto;\n}\n.tile[data-v-13e03f97] {\n  flex: 0 0 33.3333333333%;\n  height: 33.3333333333%;\n}\n.tile img[data-v-13e03f97] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".grid[data-v-13e03f97] {\n  margin: 1rem auto;\n}\n.grid .tile[data-v-13e03f97] {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  flex: 0 0 33.3333333333%;\n  height: 33.3333333333%;\n}\n.grid img[data-v-13e03f97] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10858,7 +10855,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".pag-button[data-v-64f4e14b] {\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".index-post-container[data-v-64f4e14b] {\n  padding: 1rem;\n}\n.pag-button[data-v-64f4e14b] {\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10882,7 +10879,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tag[data-v-5dfa1ad8] {\n    display: inline-block;\n    padding: .2rem .5rem;\n    margin: 0 .1rem;\n    border-radius: 15px;\n    background-color: aqua;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.post-div[data-v-5dfa1ad8]{\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 100%;\n    width: 100%;\n    margin: 0 auto;\n    gap: 1rem;\n    padding: 1.4rem 5rem;\n}\n.post-title[data-v-5dfa1ad8]{\n    text-transform: uppercase;\n}\n.tag[data-v-5dfa1ad8] {\n    display: inline-block;\n    padding: .2rem .5rem;\n    margin: 0 .1rem;\n    border-radius: 15px;\n    background-color: aqua;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12561,7 +12558,7 @@ var render = function () {
       "form",
       {
         staticClass: "row g-3 mx-2 needs-validation",
-        attrs: { method: "post", action: "/api/leads", novalidate: "" },
+        attrs: { action: "/api/leads", method: "post", novalidate: "" },
         on: {
           submit: function ($event) {
             $event.preventDefault()
@@ -12826,7 +12823,12 @@ var render = function () {
                   to: { name: "postsShow", params: { slug: post.slug } },
                 },
               },
-              [_c("img", { attrs: { src: post.image, alt: post.title } })]
+              [
+                _c("img", {
+                  staticClass: "col-4",
+                  attrs: { src: post.image, alt: post.title },
+                }),
+              ]
             ),
           ],
           1
@@ -12862,8 +12864,10 @@ var render = function () {
   return _vm.is404
     ? _c("Page404")
     : _vm.objPost
-    ? _c("div", [
-        _c("h1", [_vm._v(_vm._s(_vm.objPost.title))]),
+    ? _c("div", { staticClass: "container-fluid post-div" }, [
+        _c("h1", { staticClass: "post-title" }, [
+          _vm._v(_vm._s(_vm.objPost.title)),
+        ]),
         _vm._v(" "),
         _c("h2", [
           _vm._v("Nella categoria: " + _vm._s(_vm.objPost.category.name)),
@@ -12885,8 +12889,6 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("p", [_vm._v(_vm._s(_vm.objPost.content))]),
-        _vm._v(" "),
-        _c("p", [_vm._v("Description: " + _vm._s(_vm.objPost.description))]),
       ])
     : _c("div", [_vm._v("Loading...")])
 }
@@ -12914,7 +12916,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.results
-    ? _c("div", [
+    ? _c("div", { staticClass: "index-post-container" }, [
         _c("h1", [_vm._v("Index dei posts")]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [

@@ -2,8 +2,8 @@
     <div>
         <h1>Contact Us</h1>
         <form
-        method="post"
         action="/api/leads"
+        method="post"
         class="row g-3 mx-2 needs-validation"
         novalidate
         @submit.prevent="submitData"

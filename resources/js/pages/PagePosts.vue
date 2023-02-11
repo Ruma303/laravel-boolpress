@@ -1,5 +1,5 @@
 <template>
-    <div v-if="results">
+    <div v-if="results" class="index-post-container">
         <h1>Index dei posts</h1>
         <div class="row">
             <ul class="cards-div">
@@ -72,6 +72,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index-post-container{
+    padding: 1rem;
+}
 .pag-button{
     cursor: pointer;
 }
