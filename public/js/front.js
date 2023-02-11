@@ -5304,6 +5304,7 @@ __webpack_require__.r(__webpack_exports__);
         message: this.message
       }).then(function (response) {
         if (response.data.success) {
+          console.log(response.data.success);
           _this.resetForm();
         } else {
           _this.errors = response.data.errors;
@@ -5544,40 +5545,40 @@ __webpack_require__(/*! ./common */ "./resources/js/common.js");
 
 vue__WEBPACK_IMPORTED_MODULE_7__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]);
 var routes = [{
-  path: '/',
+  path: "/",
   component: _pages_PageHome_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-  name: 'home'
+  name: "home"
 }, {
-  path: '/about',
+  path: "/about",
   component: _pages_PageAbout_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: 'about'
+  name: "about"
 }, {
-  path: '/posts',
+  path: "/posts",
   component: _pages_PagePosts_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-  name: 'postsIndex',
+  name: "postsIndex",
   props: true
 }, {
-  path: '/posts/:slug',
+  path: "/posts/:slug",
   component: _pages_PagePost_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-  name: 'postsShow',
+  name: "postsShow",
   props: true
 }, {
-  path: '/contact-us',
-  name: 'contactUs',
+  path: "/contact-us",
+  name: "contactUs",
   component: _pages_PageContactUs_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  path: '*',
-  name: 'page404',
+  path: "*",
+  name: "page404",
   component: _pages_Page404_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }];
 
 // Personalizzazione del Vue Router
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
-  mode: 'history',
+  mode: "history",
   routes: routes
 });
 new vue__WEBPACK_IMPORTED_MODULE_7__["default"]({
-  el: '#root',
+  el: "#root",
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   },
@@ -12584,7 +12585,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.errors && _vm.error.name },
+            class: { "is-invalid": _vm.errors && _vm.errors.name },
             attrs: { type: "text", id: "name", name: "name", value: "" },
             domProps: { value: _vm.name },
             on: {
@@ -12598,14 +12599,14 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "invalid-feedback" }, [
-            _vm.error && _vm.error.name
+            _vm.errors && _vm.errors.name
               ? _c(
                   "ul",
                   [
                     _vm._l(_vm.errors.name, function (error) {
                       return _c("li", { key: error })
                     }),
-                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                    _vm._v(_vm._s(_vm.error) + "\n                "),
                   ],
                   2
                 )
@@ -12628,7 +12629,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.errors && _vm.error.email },
+            class: { "is-invalid": _vm.errors && _vm.errors.email },
             attrs: { type: "email", id: "email", name: "email", value: "" },
             domProps: { value: _vm.email },
             on: {
@@ -12642,14 +12643,14 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "invalid-feedback" }, [
-            _vm.error && _vm.error.name
+            _vm.errors && _vm.errors.name
               ? _c(
                   "ul",
                   [
                     _vm._l(_vm.errors.name, function (error) {
                       return _c("li", { key: error })
                     }),
-                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                    _vm._v(_vm._s(_vm.error) + "\n                "),
                   ],
                   2
                 )
@@ -12672,7 +12673,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
-            class: { "is-invalid": _vm.errors && _vm.error.message },
+            class: { "is-invalid": _vm.errors && _vm.errors.message },
             attrs: {
               id: "message",
               name: "message",
@@ -12695,14 +12696,14 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "invalid-feedback" }, [
-            _vm.error && _vm.error.name
+            _vm.errors && _vm.errors.name
               ? _c(
                   "ul",
                   [
                     _vm._l(_vm.errors.name, function (error) {
                       return _c("li", { key: error })
                     }),
-                    _vm._v(_vm._s(_vm.errore) + "\n                "),
+                    _vm._v(_vm._s(_vm.error) + "\n                "),
                   ],
                   2
                 )
@@ -12758,14 +12759,14 @@ var render = function () {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "invalid-feedback" }, [
-              _vm.error && _vm.error.name
+              _vm.errors && _vm.errors.name
                 ? _c(
                     "ul",
                     [
                       _vm._l(_vm.errors.name, function (error) {
                         return _c("li", { key: error })
                       }),
-                      _vm._v(_vm._s(_vm.errore) + "\n                    "),
+                      _vm._v(_vm._s(_vm.error) + "\n                    "),
                     ],
                     2
                   )

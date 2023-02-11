@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Lead;
 use App\Mail\NewLeadToLead;
 use App\Mail\NewLeadToAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class LeadController extends Controller
 {

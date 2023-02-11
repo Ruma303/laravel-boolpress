@@ -12,15 +12,15 @@
                 <label id="name" class="form-text">Your Full Name</label>
                 <input type="text"
                 class="form-control"
-                :class="{'is-invalid': errors && error.name}"
+                :class="{'is-invalid': errors && errors.name}"
                 id="name"
                 name="name"
                 value=""
                 v-model="name">
                 <div class="invalid-feedback">
-                     <ul v-if="error && error.name">
+                     <ul v-if="errors && errors.name">
                         <li v-for="error in errors.name"
-                        :key="error"/>{{errore}}
+                        :key="error"/>{{error}}
                     </ul>
                 </div>
             </div>
@@ -28,21 +28,21 @@
                 <label id="email" class="form-text">Your email</label>
                 <input type="email"
                 class="form-control"
-                :class="{'is-invalid': errors && error.email}"
+                :class="{'is-invalid': errors && errors.email}"
                 id="email" name="email"
                 value=""
                 v-model="email">
                 <div class="invalid-feedback">
-                    <ul v-if="error && error.name">
+                    <ul v-if="errors && errors.name">
                         <li v-for="error in errors.name"
-                        :key="error"/>{{errore}}
+                        :key="error"/>{{error}}
                     </ul>
                 </div>
             </div>
             <div class="mb-2 col-8">
                 <label id="message" class="form-text">Your message</label>
                 <textarea class="form-control"
-                :class="{'is-invalid': errors && error.message}"
+                :class="{'is-invalid': errors && errors.message}"
                 id="message"
                 name="message"
                 value=""
@@ -50,9 +50,9 @@
                 v-model="message"
                 placeholder="Write your message here" required maxlength="500" wrap="hard"></textarea>
                 <div class="invalid-feedback">
-                    <ul v-if="error && error.name">
+                    <ul v-if="errors && errors.name">
                         <li v-for="error in errors.name"
-                        :key="error"/>{{errore}}
+                        :key="error"/>{{error}}
                     </ul>
                 </div>
             </div>
@@ -65,9 +65,9 @@
                 name="newsletter"
                     v-model="newsletter">
                     <div class="invalid-feedback">
-                        <ul v-if="error && error.name">
+                        <ul v-if="errors && errors.name">
                             <li v-for="error in errors.name"
-                            :key="error"/>{{errore}}
+                            :key="error"/>{{error}}
                         </ul>
                     </div>
                 </div>
@@ -99,6 +99,7 @@ export default {
                 message:this.message,
             }).then(response => {
                 if (response.data.success) {
+                    console.log(response.data.success)
                     this.resetForm();
                 } else {
                     this.errors = response.data.errors;
