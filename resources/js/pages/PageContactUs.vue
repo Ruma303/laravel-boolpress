@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-fluid">
         <h1>Contact Us</h1>
         <form
         action="/api/leads"
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary col-2 mb-3">Submit</button>
+            <button type="submit" class="btn btn-primary button-contact mb-3">Submit</button>
         </form>
     </div>
 </template>
@@ -116,6 +116,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+h1 {
+    text-transform: uppercase;
+}
+.button-contact {
+    width: fit-content;
+}
 </style>

@@ -11,6 +11,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+div{
+    padding: 2rem 5rem;
+    text-align: center;
+}
+h1 {
+    text-transform: uppercase;
+}
 </style>
